@@ -4,10 +4,12 @@ using System.Collections;
 public class BunnyController : MonoBehaviour {
 
 	private Rigidbody2D myRigidBody;
+    private Animator myAnim;
 	public float bunnyJumpForce = 500f;
 	// Use this for initialization
 	void Start () {
 		myRigidBody = GetComponent<Rigidbody2D> ();
+        myAnim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -15,5 +17,6 @@ public class BunnyController : MonoBehaviour {
 		if (Input.GetButtonUp ("Jump")) {
 			myRigidBody.AddForce (transform.up * bunnyJumpForce);
 		}
+        myAnim.SetFloat("Velocity", Mathf.Abs(myRigidBody.velocity.y));
 	}
 }
